@@ -1,0 +1,30 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    margin-top: -100px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #f5f5f5;
+    left: 50%;
+    margin-left: -150px;
+}
+
+.popup__button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+.popup__form{
+    padding-top: 10px;
+}
+.popup__form input{
+    width: 100%
+}
+.popup--hidden{
+    display: none
+}
