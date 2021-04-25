@@ -5,6 +5,7 @@ namespace Company\Location;
 use \Bitrix\Main\Localization\Loc;
 use \Bitrix\Main\Application;
 use \Bitrix\Main\Config\Option;
+use \Bitrix\Main\Service\GeoIp;
 
 Loc::loadMessages(__FILE__);
 
@@ -66,7 +67,15 @@ class Location
      */
     public function getCurrentCity()
     {
+
         $session = Application::getInstance()->getSession();
-        return $session->get($this->city);
+        $city = $session->get($this->city);
+
+        if (!$city) {
+            $ip = GeoIp\Manager::getRealIp();
+            $city = \Bitrix\Main\Service\GeoIp\Manager::getCityName($ip, LANGUAGE_ID);
+            $session->set($this->city, $city);
+        }
+        return $city ? $city : Loc::GetMessage('COMPANY_LOCATION_NOT_CITY');
     }
 }
