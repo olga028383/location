@@ -74,10 +74,10 @@ class Location
         if (!$city) {
             $ip = GeoIp\Manager::getRealIp();
             $city = \Bitrix\Main\Service\GeoIp\Manager::getCityName($ip);
-        }
 
-        if($city) {
-            $session->set($this->city, $city);
+            if ($city) {
+                $session->set($this->city, $city);
+            }
         }
 
         return $city ? $city : Loc::GetMessage('COMPANY_LOCATION_NOT_CITY');
