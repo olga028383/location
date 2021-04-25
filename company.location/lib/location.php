@@ -73,7 +73,7 @@ class Location
 
         if (!$city) {
             $ip = GeoIp\Manager::getRealIp();
-            $city = \GeoIp\Manager::getCityName($ip);
+            $city = GeoIp\Manager::getCityName($ip);
 
             if ($city) {
                 $session->set($this->city, $city);
